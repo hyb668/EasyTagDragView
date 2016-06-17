@@ -5,25 +5,24 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.wenhuaijun.easytagdragview.bean.SimpleTitleTip;
-import com.wenhuaijun.easytagdragview.bean.Tip;
 import com.wenhuaijun.easytagdragview.R;
+import com.wenhuaijun.easytagdragview.bean.TitleTip;
 
 import java.util.List;
 
 /**
  * Created by Administrator on 2016/5/27 0027.
  */
-public class AddTipAdapter extends BaseAdapter{
+public class AddTipAdapter extends BaseAdapter {
 
-    private List<Tip> tips;
+    private List<TitleTip> tips;
 
     public AddTipAdapter() {
     }
 
     @Override
     public int getCount() {
-        if(tips ==null){
+        if (tips == null) {
             return 0;
         }
         return tips.size();
@@ -41,19 +40,20 @@ public class AddTipAdapter extends BaseAdapter{
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        View view =View.inflate(parent.getContext(), R.layout.view_add_item,null);
-        ((TextView)view.findViewById(R.id.tagview_title)).setText((((SimpleTitleTip)(tips.get(position))).getTip()));
+        View view = View.inflate(parent.getContext(), R.layout.view_add_item, null);
+        ((TextView) view.findViewById(R.id.tagview_title)).setText((((TitleTip) (tips.get(position))).getTip()));
         return view;
     }
 
-    public List<Tip> getData() {
+    public List<TitleTip> getData() {
         return tips;
     }
 
-    public void setData(List<Tip> iDragEntities) {
+    public void setData(List<TitleTip> iDragEntities) {
         this.tips = iDragEntities;
     }
-    public void refreshData(){
+
+    public void refreshData() {
         notifyDataSetChanged();
     }
 }

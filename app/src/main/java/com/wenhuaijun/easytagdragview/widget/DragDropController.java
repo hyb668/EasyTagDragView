@@ -13,8 +13,7 @@ import java.util.List;
  */
 public class DragDropController {
 
-    private final List<OnDragDropListener> mOnDragDropListeners =
-            new ArrayList<OnDragDropListener>();
+    private final List<OnDragDropListener> mOnDragDropListeners = new ArrayList<OnDragDropListener>();
     private final DragItemContainer mDragItemContainer;
     private final int[] mLocationOnScreen = new int[2];
 
@@ -50,9 +49,8 @@ public class DragDropController {
         v.getLocationOnScreen(mLocationOnScreen);
         final int screenX = x + mLocationOnScreen[0];
         final int screenY = y + mLocationOnScreen[1];
-        final View view = mDragItemContainer.getViewForLocation(
-                screenX, screenY);
-        if(view == null){
+        final View view = mDragItemContainer.getViewForLocation(screenX, screenY);
+        if (view == null) {
             return;
         }
         for (int i = 0; i < mOnDragDropListeners.size(); i++) {

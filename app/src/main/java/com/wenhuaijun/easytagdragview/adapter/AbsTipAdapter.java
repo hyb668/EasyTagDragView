@@ -1,18 +1,3 @@
-/*
- * Copyright 2015 - 2016 solartisan/imilk
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 package com.wenhuaijun.easytagdragview.adapter;
 
 import android.animation.Animator;
@@ -24,10 +9,10 @@ import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.BaseAdapter;
 
-import com.wenhuaijun.easytagdragview.widget.DragDropGirdView;
-import com.wenhuaijun.easytagdragview.bean.Tip;
-import com.wenhuaijun.easytagdragview.listener.OnDragDropListener;
 import com.wenhuaijun.easytagdragview.R;
+import com.wenhuaijun.easytagdragview.bean.TitleTip;
+import com.wenhuaijun.easytagdragview.listener.OnDragDropListener;
+import com.wenhuaijun.easytagdragview.widget.DragDropGirdView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -36,22 +21,20 @@ import java.util.List;
 /**
  * Also allows for a configurable number of columns as well as a maximum row of tiled view.
  */
-public abstract class AbsTipAdapter extends BaseAdapter implements
-        OnDragDropListener {
-    private static final String TAG = "AbsTipAdapter";
-
-    protected DragDropListener mDragDropListener;
+public abstract class AbsTipAdapter extends BaseAdapter implements OnDragDropListener {
 
     protected Context mContext;
+
+    protected DragDropListener mDragDropListener;
 
     /**
      * Contact data stored in cache. This is used to populate the associated view.
      */
-    protected ArrayList<Tip> tips = null;
+    protected ArrayList<TitleTip> tips = null;
     /**
      * Back up of（备份） the temporarily removed Contact during dragging.
      */
-    private Tip tempTip = null;
+    private TitleTip tempTip = null;
     /**
      * Position of the temporarily removed contact in the cache.
      */
@@ -83,7 +66,7 @@ public abstract class AbsTipAdapter extends BaseAdapter implements
     private final HashMap<Long, Integer> mItemIdLeftMap = new HashMap<Long, Integer>();
 
 
-    public static Tip BLANK_ENTRY = new Tip() {
+    public static TitleTip BLANK_ENTRY = new TitleTip() {
         private int id;
 
         @Override
@@ -101,23 +84,23 @@ public abstract class AbsTipAdapter extends BaseAdapter implements
 
         DragDropGirdView getDragDropGirdView();
 
-        void onDataSetChangedForResult(ArrayList<Tip> list);
+        void onDataSetChangedForResult(ArrayList<TitleTip> list);
     }
 
 
-    public AbsTipAdapter(Context context,
-                         DragDropListener dragDropListener) {
+    public AbsTipAdapter(Context context, DragDropListener dragDropListener) {
         mDragDropListener = dragDropListener;
         mContext = context;
-        tips = new ArrayList<Tip>();
+        tips = new ArrayList<TitleTip>();
         mAnimationDuration = context.getResources().getInteger(R.integer.fade_duration);
     }
 
     /**
      * thumbtack some view,start
+     *
      * @param startLimit
      */
-    protected void setTilesStartLimit(int startLimit){
+    protected void setTilesStartLimit(int startLimit) {
         mTilesStartLimit = startLimit;
     }
 
@@ -127,9 +110,10 @@ public abstract class AbsTipAdapter extends BaseAdapter implements
 
     /**
      * thumbtack some view,end
+     *
      * @param endLimit
      */
-    protected void setTilesEndLimit(int endLimit){
+    protected void setTilesEndLimit(int endLimit) {
         mTilesEndLimit = endLimit;
     }
 
@@ -137,6 +121,7 @@ public abstract class AbsTipAdapter extends BaseAdapter implements
     public int getTilesEndLimit() {
         return mTilesEndLimit;
     }
+
     /**
      * Indicates whether a drag is in process.
      *
@@ -148,7 +133,7 @@ public abstract class AbsTipAdapter extends BaseAdapter implements
     }
 
     //当数据改变时调用
-    public void setData(List<Tip> tips) {
+    public void setData(List<TitleTip> tips) {
         if (!mDelayCursorUpdates && tips != null) {
             this.tips.clear();
             this.tips.addAll(tips);
@@ -165,7 +150,6 @@ public abstract class AbsTipAdapter extends BaseAdapter implements
         if (tips == null) {
             return 0;
         }
-
         return tips.size();
     }
 
@@ -174,7 +158,7 @@ public abstract class AbsTipAdapter extends BaseAdapter implements
      * on the row for the given position.
      */
     @Override
-    public Tip getItem(int position) {
+    public TitleTip getItem(int position) {
         return tips.get(position);
     }
 
@@ -299,7 +283,7 @@ public abstract class AbsTipAdapter extends BaseAdapter implements
      * @param view
      * @return
      */
-    protected abstract Tip getDragEntity(View view);
+    protected abstract TitleTip getDragEntity(View view);
 
     @Override
     public void onDragStarted(int x, int y, View view) {
@@ -315,7 +299,7 @@ public abstract class AbsTipAdapter extends BaseAdapter implements
         }
         final int itemIndex = tips.indexOf(getDragEntity(view));
         if (mInDragging && mDragEnteredTipIndex != itemIndex
-                && isIndexInBound(itemIndex) && itemIndex > mTilesStartLimit &&  itemIndex < mTilesEndLimit) {
+                && isIndexInBound(itemIndex) && itemIndex > mTilesStartLimit && itemIndex < mTilesEndLimit) {
             markDropArea(itemIndex);
         }
     }

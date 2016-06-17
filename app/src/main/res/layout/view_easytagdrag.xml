@@ -1,49 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".MainActivity">
+
     <RelativeLayout
         android:id="@+id/tab"
         android:layout_width="match_parent"
-        android:padding="8dp"
+        android:layout_height="wrap_content"
         android:background="@color/gray_light"
-        android:layout_height="wrap_content">
+        android:padding="8dp">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:text="切换栏目"
-            />
+            android:text="切换栏目" />
+
         <ImageView
             android:id="@+id/drag_close_img"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:layout_centerVertical="true"
-            android:src="@drawable/delete"
             android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/delete" />
 
-            />
         <TextView
             android:id="@+id/drag_finish_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:src="@drawable/delete"
             android:text="完成"
-            android:visibility="gone"
-            android:textSize="16sp"
             android:textColor="@android:color/holo_red_dark"
-            android:layout_alignParentRight="true"
-            />
+            android:textSize="16sp"
+            android:visibility="gone" />
     </RelativeLayout>
+
     <RelativeLayout
-        android:layout_below="@+id/tab"
         android:layout_width="match_parent"
-        android:padding="8dp"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_below="@+id/tab"
+        android:padding="8dp">
+
         <com.wenhuaijun.easytagdragview.widget.DragDropGirdView
             android:id="@+id/tagdrag_view"
             android:layout_width="match_parent"
@@ -51,44 +53,45 @@
             android:divider="@null"
             android:fadingEdge="none"
             android:horizontalSpacing="12dp"
-            android:verticalSpacing="10dp"
-            app:fixed_type="true"
             android:nestedScrollingEnabled="true"
             android:numColumns="4"
-            />
+            android:verticalSpacing="10dp"
+            app:fixed_type="true" />
+
         <TextView
             android:id="@+id/tv"
-            android:layout_below="@+id/tagdrag_view"
-            android:layout_alignParentRight="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="长按排序或删除"
-            />
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/tagdrag_view"
+            android:text="长按排序或删除" />
+
         <RelativeLayout
-            android:layout_marginTop="8dp"
-            android:layout_below="@id/tv"
             android:layout_width="match_parent"
-            android:paddingTop="4dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv"
+            android:layout_marginTop="8dp"
             android:background="@color/gray_item"
-            android:layout_height="wrap_content">
+            android:paddingTop="4dp">
+
             <TextView
                 android:id="@+id/more_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="点击添加更多栏目"
-                />
+                android:text="点击添加更多栏目" />
+
             <GridView
                 android:id="@+id/add_gridview"
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/more_tv"
+                android:layout_marginTop="8dp"
+                android:divider="@null"
+                android:fadingEdge="none"
+                android:horizontalSpacing="12dp"
                 android:nestedScrollingEnabled="true"
                 android:numColumns="4"
-                android:layout_marginTop="8dp"
-                android:horizontalSpacing="12dp"
-                android:verticalSpacing="10dp"
-                android:fadingEdge="none"
-                android:layout_below="@+id/more_tv"
-                android:divider="@null"
-                android:layout_height="wrap_content">
+                android:verticalSpacing="10dp">
 
             </GridView>
         </RelativeLayout>

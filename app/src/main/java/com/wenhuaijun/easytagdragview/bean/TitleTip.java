@@ -1,14 +1,15 @@
 package com.wenhuaijun.easytagdragview.bean;
 
-public class SimpleTitleTip implements Tip {
+public class TitleTip {
+
     private int id;
     private String tip;
-    @Override
+
+
     public int getId() {
         return id;
     }
 
-    @Override
     public void setId(int id) {
         this.id = id;
     }
@@ -23,6 +24,6 @@ public class SimpleTitleTip implements Tip {
 
     @Override
     public String toString() {
-        return "tip:"+ tip;
+        return "tip:" + tip;
     }
 }
